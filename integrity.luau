@@ -5,6 +5,22 @@ local required_functions = {
     "cloneref"
 }
 
+local function _sameKeys(t1, t2)
+    for key in pairs(t1) do
+        if t2[key] == nil then
+            return false
+        end
+    end
+
+    for key in pairs(t2) do
+        if t1[key] == nil then
+            return false
+        end
+    end
+
+    return true
+end
+
 local function _check()
     local passed = {}
     for _, func in required_functions do
@@ -13,7 +29,7 @@ local function _check()
         end
     end
 
-    if passed == required_functions then
+    if _sameKeys(passed, required_functions) then
         return true
     end
 
