@@ -2,7 +2,8 @@ local required_functions = {
     "hookfunction",
     "getloadedmodules",
     "request",
-    "cloneref"
+    "cloneref",
+    "Drawing"
 }
 
 local function _sameKeys(t1, t2)
