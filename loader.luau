@@ -18,6 +18,40 @@ if not integritycheck then
     return
 end
 
+local function _ensureFolder(path)
+    if not isfolder(path) then
+        makefolder(path)
+    end
+end
+
+local function _safeRead(path)
+    if isfile(path) then
+        return readfile(path)
+    end
+    return nil
+end
+
+_ensureFolder("vector")
+
+if not _safeRead("vector/data.json") then
+    writefile("vector/data.json", "{}")
+    local bindable = Instance.new("BindableFunction")
+    bindable.OnInvoke = function(response)
+        print(response)
+        if response == "Copy to clipboard" then
+            setclipboard("https://discord.gg/6sqn74fwnp")
+        end
+    end
+    StarterGui:SetCore("SendNotification", {
+        Title = "Vector",
+        Text = "Join our discord server!",
+        Duration = 5,
+        Callback = bindable,
+        Button1 = "Copy to clipboard",
+        Button2 = "I DONT CARE"
+    })
+end
+
 local function _getGameScript()
     local response = game:HttpGet(url)
 
