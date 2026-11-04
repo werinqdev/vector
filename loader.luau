@@ -37,7 +37,6 @@ if not _safeRead("vector/data.json") then
     writefile("vector/data.json", "{}")
     local bindable = Instance.new("BindableFunction")
     bindable.OnInvoke = function(response)
-        print(response)
         if response == "Copy to clipboard" then
             setclipboard("https://discord.gg/6sqn74fwnp")
         end
